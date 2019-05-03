@@ -1,7 +1,7 @@
 class MainComponent extends HTMLElement {
-    constructor(){
+    constructor() {
         super();
-        const shadow = this.attachShadow({mode: 'open'});
+        const shadow = this.attachShadow({ mode: 'open' });
         const template = document.createElement('template');
 
         template.innerHTML = /*html*/`
@@ -11,6 +11,7 @@ class MainComponent extends HTMLElement {
                  this is the main component right here
                 </div>
             </div>
+
         `;
 
         const templateContent = template.content.cloneNode(true);

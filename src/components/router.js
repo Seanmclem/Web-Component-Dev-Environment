@@ -3,11 +3,10 @@ export class RouterComponent extends HTMLElement {
     routes = {};
     isFirstRoute = true;
 
-    constructor(){
+    constructor() {
         super();
-        const shadow = this.attachShadow({mode: 'open'});
+        const shadow = this.attachShadow({ mode: 'open' });
         let template = document.createElement('template');
-
         this.setupRoutes();
         window.addEventListener('popstate', e => this.onBack(e));
         document.querySelector('html').addEventListener('routed', e => {
@@ -26,43 +25,48 @@ export class RouterComponent extends HTMLElement {
             <div class="router">
                 ${componentName ? `<${componentName}></${componentName}>` : ``}
             </div>
+            <style>
+                .router {
+                    margin: 10px;
+                }
+            </style>
         `;
     }
 
     setupRoutes = () => {
         Array.from(this.children)
-        .forEach(childElement => {
-            if(childElement.nodeName === "ROUTE-DEFINE"){
-                const route = childElement.getAttribute("route");
-                const component = this.handleNameStyle(childElement.getAttribute("component"));
-                this.routes[`'${route}'`] = component;
-            }
-        });
+            .forEach(childElement => {
+                if (childElement.nodeName === "ROUTE-DEFINE") {
+                    const route = childElement.getAttribute("route");
+                    const component = this.handleNameStyle(childElement.getAttribute("component"));
+                    this.routes[`'${route}'`] = component;
+                }
+            });
         //console.log(this.routes);
         this.checkFirstRoute();
     }
 
     handleNameStyle(componentName) {
-        if(componentName && componentName.indexOf('-') === -1){
-            var i=0;
-            var character='';
-            while (i <= componentName.length){
+        if (componentName && componentName.indexOf('-') === -1) {
+            var i = 0;
+            var character = '';
+            while (i <= componentName.length) {
                 character = componentName.charAt(i);
-                if (isNaN(character * 1) && character == character.toUpperCase()){
+                if (isNaN(character * 1) && character == character.toUpperCase()) {
                     //alert ('upper case true');
                     const newChars = i == 0 ? character.toLowerCase() : `-${character.toLowerCase()}`
                     componentName = componentName.substr(0, i) + newChars + componentName.substr(i + 1);
-                } 
+                }
                 i++;
             }
-        } 
+        }
         return componentName;
     }
 
 
 
     checkFirstRoute = () => {
-        if(this.checkFirstRoute){
+        if (this.checkFirstRoute) {
             //console.log('first route!')
             this.checkFirstRoute = false;
             const currentRoute = window.location.pathname;
@@ -70,7 +74,7 @@ export class RouterComponent extends HTMLElement {
         }
     }
 
-    onBack(e){
+    onBack(e) {
         const currentRoute = window.location.pathname;
         this.shadowRoot.innerHTML = this.render(currentRoute);
     }

@@ -1,13 +1,13 @@
 import './components/navigation.js';
-import './components/main.js';
+import './components/pages/home.js';
+import './components/pages/about.js';
 import './components/router.js';
-import './components/demo.js';
 import './components/routeDefine.js';
 
 class AppComponent extends HTMLElement {
-    constructor(){
+    constructor() {
         super();
-        const shadow = this.attachShadow({mode: 'open'});
+        const shadow = this.attachShadow({ mode: 'open' });
         const template = document.createElement('template');
 
         template.innerHTML = /*html*/`
@@ -15,11 +15,11 @@ class AppComponent extends HTMLElement {
             <div class="app-body">
                 <navigation-component></navigation-component>
                 <router-component>
-                    <route-define route="/demo" component="DemoComponent"></route-define>
-                    <route-define route="/main" component="main-component"></route-define>
+                    <route-define route="/home" component="HomePage"></route-define>
+                    <route-define route="/about" component="about-page"></route-define>
                 </router-component>
             </div>
-            
+
         `;
 
         const templateContent = template.content.cloneNode(true);

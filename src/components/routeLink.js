@@ -4,8 +4,7 @@
             super();
             const shadow = this.attachShadow({mode: 'open'});
             const template = document.createElement('template');
-            //this.routeChange = this.routeChange.bind(this)
-//debugger;
+          
             template.innerHTML = /*html*/`
 
                 <a href="#">
@@ -20,10 +19,9 @@
                 e.preventDefault();
                 const path = this.getAttribute("path");
                 const title = this.getAttribute("title");
-                window.history.pushState("", title, `/${path}`); //data, title, path... data?
-                //on route click -> changes-route here ^ -> dispatches event to router.js to update slot name/content
+                window.history.pushState("", title, `/${path}`);
                 // create and dispatch the event
-                var event = new CustomEvent("routed", {
+                let event = new CustomEvent("routed", {
                     bubbles: true,
                     composed: true, //https://developer.mozilla.org/en-US/docs/Web/API/Event/composed
                     detail: {
@@ -31,11 +29,6 @@
                     }
                 });
                 this.dispatchEvent(event); //dispatch does what
-
-                //^^ title not eorking... what gives?
-                // var event = new CustomEvent('doRoute', {test: `/${path}`});
-                // this.dispatchEvent(event);
-                // this.dispatchEvent(new CustomEvent('doRoute'));
             }
             shadow.appendChild(templateContent);
         };
