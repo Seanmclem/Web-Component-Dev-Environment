@@ -15,6 +15,7 @@ class AppComponent extends HTMLElement {
             <div class="app-body">
                 <navigation-component></navigation-component>
                 <router-component>
+                    <route-define route="/" component="HomePage"></route-define>
                     <route-define route="/home" component="HomePage"></route-define>
                     <route-define route="/about" component="about-page"></route-define>
                 </router-component>
