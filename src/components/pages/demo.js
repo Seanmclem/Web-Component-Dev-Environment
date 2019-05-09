@@ -1,26 +1,22 @@
-import { add, subtract } from './math.js';
+import { add, subtract } from '../math.js';
 
 class DemoComponent extends HTMLElement {
-    constructor(){
+    constructor() {
         super();
-        const shadow = this.attachShadow({mode: 'open'});
+        const shadow = this.attachShadow({ mode: 'open' });
         let template = document.createElement('template');
 
 
         template.innerHTML = /*html*/`
             <h3>Demo</h3>
             <div> 
-                five minus one equals = ${subtract(5,1)}  
+                five minus one equals = ${subtract(5, 1)}  
             </div>
             <a rel="noopener" target="_blank" href="http://www.google.com">
                 Click me to go to google!
             </a>
 
             
-            <!-- <slot> Please update to a modern browser </slot> -->
-            <!-- ^ renders children, shows message if not suppported. by default-->
-            <!-- https://developers.google.com/web/fundamentals/web-components/shadowdom#slots -->
-
             <style>
             :host {
               display: inline;
@@ -58,4 +54,4 @@ const test2 = () => {
     return 'prest2';
 };
 
-customElements.define('demo-component', DemoComponent);
+customElements.define('demo-page', DemoComponent);

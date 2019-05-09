@@ -1,6 +1,7 @@
 import './components/navigation.js';
 import './components/pages/home.js';
 import './components/pages/about.js';
+import './components/pages/demo.js';
 import './components/router.js';
 import './components/routeDefine.js';
 
@@ -15,9 +16,10 @@ class AppComponent extends HTMLElement {
             <div class="app-body">
                 <navigation-component></navigation-component>
                 <router-component>
-                    <route-define route="/" component="HomePage"></route-define>
-                    <route-define route="/home" component="HomePage"></route-define>
-                    <route-define route="/about" component="about-page"></route-define>
+                    <route-define route="/" component="home-page"></route-define>
+                    <route-define route="/home" component="home-page"></route-define>
+                    <route-define route="/demo" component="demo-page"></route-define>
+                    <route-define route="/about" component="AboutPage"></route-define>
                 </router-component>
             </div>
 
