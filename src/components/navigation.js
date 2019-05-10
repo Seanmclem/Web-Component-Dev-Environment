@@ -14,6 +14,9 @@ class NavigationComponent extends HTMLElement {
                 <route-link path="demo">
                     Demo
                 </route-link>
+                <route-link path="demo/testvalue">
+                    Demo param value
+                </route-link>
                 <route-link path="about">
                     About
                 </route-link>

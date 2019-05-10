@@ -9,21 +9,19 @@ export class RouterComponent extends HTMLElement {
         let template = document.createElement('template');
         this.setupRoutes();
         window.addEventListener('popstate', e => this.onBack(e));
-        document.querySelector('html').addEventListener('routed', e => {
-            const path = e.detail.path;
-            this.shadowRoot.innerHTML = this.render(path);
-        });
+        document.querySelector('html').addEventListener('routed', e => this.routed(e));
 
         const templateContent = template.content.cloneNode(true);
         shadow.appendChild(templateContent);
     }; //end constructor
 
 
-    render(path) {
-        const componentName = this.routes[`'${path}'`] ? this.routes[`'${path}'`] : this.routes[`'/${path}'`];
+    render(path, paramValue, paramName) {
+        const componentName = this.routes[`'${path}'`] ? this.routes[`'${path}'`].component : this.routes[`'/${path}'`].component;
+        //NEED TO DO: generate element refs programatically for insetion. No strings
         return /*html*/`
             <div class="router">
-                ${componentName ? `<${componentName}></${componentName}>` : ``}
+                ${componentName ? `<${componentName}${paramName && paramValue ? ` ${paramName}="${paramValue}"` : ``}></${componentName}>` : ``}
             </div>
             <style>
                 .router {
@@ -33,17 +31,46 @@ export class RouterComponent extends HTMLElement {
         `;
     }
 
+    routed = (data) => {
+        //removing first /. migth be redundant by here. did it earlier?
+        const paths = data.detail ? data.detail.path.replace(/^\//, '').split('/') : data.replace(/^\//, '').split('/');
+        const path = paths && paths.length > 0 ? paths[0] : null;
+        const paramValue = paths && paths.length > 1 ? paths[1] : null;
+        let paramName = null;
+        if (paramValue) {
+            Object.keys(this.routes).forEach((route) => {
+                const value = this.routes[route];
+                if (value.param) {
+                    const pathToUse = value.path.replace(/^\//, '');
+                    paramName = pathToUse === path ? value.param : null;
+                }
+            });
+        }
+        this.shadowRoot.innerHTML = this.render(path, paramValue, paramName);
+    }
+
     setupRoutes = () => {
         Array.from(this.children)
             .forEach(childElement => {
                 if (childElement.nodeName === "ROUTE-DEFINE") {
                     const route = childElement.getAttribute("route");
                     const component = this.handleNameStyle(childElement.getAttribute("component"));
-                    this.routes[`'${route}'`] = component;
+                    const routeData = this.checkSetPaths(route, component);
+                    this.routes[`'${route}'`] = routeData;
                 }
             });
-        //console.log(this.routes);
+
         this.checkFirstRoute();
+    }
+
+    checkSetPaths(route, component) {
+        const paramArr = route.toLowerCase().split('/:');
+        let routeObj = {};
+        routeObj.path = paramArr && paramArr.length > 0 ? paramArr[0].replace(/^\//, '') : null; //Omit?
+        routeObj.param = paramArr && paramArr.length > 1 ? paramArr[1].replace(/^\//, '') : null;
+        routeObj.component = component;
+
+        return routeObj;
     }
 
     handleNameStyle(componentName) {
@@ -70,13 +97,13 @@ export class RouterComponent extends HTMLElement {
             //console.log('first route!')
             this.checkFirstRoute = false;
             const currentRoute = window.location.pathname;
-            this.shadowRoot.innerHTML = this.render(currentRoute);
+            this.routed(currentRoute);
         }
     }
 
     onBack(e) {
         const currentRoute = window.location.pathname;
-        this.shadowRoot.innerHTML = this.render(currentRoute);
+        this.routed(currentRoute);
     }
 
     // toTitleCase(str) {

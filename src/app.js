@@ -19,6 +19,7 @@ class AppComponent extends HTMLElement {
                     <route-define route="/" component="home-page"></route-define>
                     <route-define route="/home" component="home-page"></route-define>
                     <route-define route="/demo" component="demo-page"></route-define>
+                    <route-define route="/demo/:param" component="demo-page"></route-define>
                     <route-define route="/about" component="AboutPage"></route-define>
                 </router-component>
             </div>
