@@ -16,7 +16,6 @@ class DemoComponent extends HTMLElement {
                 Click me to go to google!
             </a>
 
-            
             <style>
             :host {
               display: inline;
@@ -33,8 +32,8 @@ class DemoComponent extends HTMLElement {
 
         var tests = this.test();
         var secondTest = test2();
-        var hat = shoes;
-        //debugger;
+        var hat = "shoe";
+        //
 
     };
     // connectedCallback() {
