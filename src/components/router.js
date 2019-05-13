@@ -13,7 +13,7 @@ export class RouterComponent extends HTMLElement {
 
         const templateContent = template.content.cloneNode(true);
         shadow.appendChild(templateContent);
-    }; //end constructor
+    };
 
 
     render(path, paramValue, paramName) {
@@ -38,6 +38,7 @@ export class RouterComponent extends HTMLElement {
         const paramValue = paths && paths.length > 1 ? paths[1] : null;
         let paramName = null;
         if (paramValue) {
+            //getting 'name' of route param as fed to route-define component. To insert as atttribute name
             Object.keys(this.routes).forEach((route) => {
                 const value = this.routes[route];
                 if (value.param) {
@@ -66,10 +67,9 @@ export class RouterComponent extends HTMLElement {
     checkSetPaths(route, component) {
         const paramArr = route.toLowerCase().split('/:');
         let routeObj = {};
-        routeObj.path = paramArr && paramArr.length > 0 ? paramArr[0].replace(/^\//, '') : null; //Omit?
+        routeObj.path = paramArr && paramArr.length > 0 ? paramArr[0].replace(/^\//, '') : null; //used for Param-parsing
         routeObj.param = paramArr && paramArr.length > 1 ? paramArr[1].replace(/^\//, '') : null;
         routeObj.component = component;
-
         return routeObj;
     }
 
@@ -80,7 +80,7 @@ export class RouterComponent extends HTMLElement {
             while (i <= componentName.length) {
                 character = componentName.charAt(i);
                 if (isNaN(character * 1) && character == character.toUpperCase()) {
-                    //alert ('upper case true');
+                    //Upper case true
                     const newChars = i == 0 ? character.toLowerCase() : `-${character.toLowerCase()}`
                     componentName = componentName.substr(0, i) + newChars + componentName.substr(i + 1);
                 }
@@ -90,11 +90,8 @@ export class RouterComponent extends HTMLElement {
         return componentName;
     }
 
-
-
     checkFirstRoute = () => {
         if (this.checkFirstRoute) {
-            //console.log('first route!')
             this.checkFirstRoute = false;
             const currentRoute = window.location.pathname;
             this.routed(currentRoute);
