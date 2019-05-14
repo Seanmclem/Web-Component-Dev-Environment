@@ -80,16 +80,13 @@ export class RouterComponent extends HTMLElement {
 
     handleNameStyle(componentName) {
         if (componentName && componentName.indexOf('-') === -1) {
-            var i = 0;
-            var character = '';
-            while (i <= componentName.length) {
-                character = componentName.charAt(i);
+            for (let i = 0; i <= componentName.length; i++) {
+                let character = componentName.charAt(i);
                 if (isNaN(character * 1) && character == character.toUpperCase()) {
                     //Upper case true
                     const newChars = i == 0 ? character.toLowerCase() : `-${character.toLowerCase()}`
                     componentName = componentName.substr(0, i) + newChars + componentName.substr(i + 1);
                 }
-                i++;
             }
         }
         return componentName;
