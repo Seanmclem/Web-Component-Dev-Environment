@@ -96,8 +96,8 @@ export class RouterComponent extends HTMLElement {
     }
 
     checkFirstRoute = () => {
-        if (this.checkFirstRoute) {
-            this.checkFirstRoute = false;
+        if (this.isFirstRoute) {
+            this.isFirstRoute = false;
             const currentRoute = window.location.pathname;
             this.routed(currentRoute);
         }
