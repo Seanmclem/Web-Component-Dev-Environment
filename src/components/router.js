@@ -18,17 +18,14 @@ export class RouterComponent extends HTMLElement {
 
     render(path, paramValue, paramName) {
         const componentName = this.routes[`'${path}'`] ? this.routes[`'${path}'`].component : this.routes[`'/${path}'`].component;
-        //NEED TO DO: generate element refs programatically for insetion. No strings
-        return /*html*/`
-            <div class="router">
-                ${componentName ? `<${componentName}${paramName && paramValue ? ` ${paramName}="${paramValue}"` : ``}></${componentName}>` : ``}
-            </div>
-            <style>
-                .router {
-                    margin: 10px;
-                }
-            </style>
-        `;
+
+        const ComponentRouted = customElements.get(componentName);
+        let componentRouted = new ComponentRouted();
+        if (paramName && paramValue) {
+            componentRouted[paramName] = paramValue;
+        }
+
+        return componentRouted;
     }
 
     routed = (data) => {
@@ -47,7 +44,15 @@ export class RouterComponent extends HTMLElement {
                 }
             });
         }
-        this.shadowRoot.innerHTML = this.render(path, paramValue, paramName);
+        this.shadowRoot.innerHTML = "";
+
+        //need a better way to attach styles?
+        let routerContainer = document.createElement('div');
+        routerContainer.classList.add('router-container');
+        routerContainer.style.margin = "10px";
+        routerContainer.appendChild(this.render(path, paramValue, paramName))
+
+        this.shadowRoot.appendChild(routerContainer);
     }
 
     setupRoutes = () => {
