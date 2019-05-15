@@ -7,7 +7,9 @@ export class RouterComponent extends HTMLElement {
         super();
         const shadow = this.attachShadow({ mode: 'open' });
         let template = document.createElement('template');
+
         this.setupRoutes();
+        this.checkFirstRoute();
         window.addEventListener('popstate', e => this.onBack(e));
         document.querySelector('html').addEventListener('routed', e => this.routed(e));
 
@@ -24,6 +26,9 @@ export class RouterComponent extends HTMLElement {
         if (paramName && paramValue) {
             componentRouted[paramName] = paramValue;
         }
+        //handle query params? at all?
+        //URLSearchParams()
+        // https://developer.mozilla.org/en-US/docs/Web/API/URLSearchParams
 
         return componentRouted;
     }
@@ -50,7 +55,7 @@ export class RouterComponent extends HTMLElement {
         let routerContainer = document.createElement('div');
         routerContainer.classList.add('router-container');
         routerContainer.style.margin = "10px";
-        routerContainer.appendChild(this.render(path, paramValue, paramName))
+        routerContainer.appendChild(this.render(path, paramValue, paramName));
 
         this.shadowRoot.appendChild(routerContainer);
     }
@@ -65,8 +70,6 @@ export class RouterComponent extends HTMLElement {
                     this.routes[`'${route}'`] = routeData;
                 }
             });
-
-        this.checkFirstRoute();
     }
 
     checkSetPaths(route, component) {

@@ -1,10 +1,10 @@
-(function() {
+(function () {
     class RouteLink extends HTMLElement {
-        constructor(){
+        constructor() {
             super();
-            const shadow = this.attachShadow({mode: 'open'});
+            const shadow = this.attachShadow({ mode: 'open' });
             const template = document.createElement('template');
-          
+
             template.innerHTML = /*html*/`
 
                 <a href="#">
@@ -18,8 +18,11 @@
             templateContent.firstElementChild.onclick = (e) => {
                 e.preventDefault();
                 const path = this.getAttribute("path");
-                const title = this.getAttribute("title");
-                window.history.pushState("", title, `/${path}`);
+                //const title = this.getAttribute("title"); //unused on history
+                //title = https://www.w3schools.com/jsref/prop_doc_title.asp
+
+                window.history.pushState("", "", `/${path}`);
+
                 // create and dispatch the event
                 let event = new CustomEvent("routed", {
                     bubbles: true,
