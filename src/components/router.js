@@ -1,10 +1,12 @@
-export class RouterComponent extends HTMLElement {
+class RouterComponent extends HTMLElement {
     //Component is a router-outlet, a route registry, and route handler
-    routes = {};
-    isFirstRoute = true;
+
 
     constructor() {
         super();
+        this.routes = {};
+        this.isFirstRoute = true;
+
         const shadow = this.attachShadow({ mode: 'open' });
         let template = document.createElement('template');
 
@@ -32,6 +34,9 @@ export class RouterComponent extends HTMLElement {
 
         return componentRouted;
     }
+
+
+    ////NEEDS BABEL https://stackoverflow.com/questions/42063854/arrow-function-syntax-not-working-with-webpack
 
     routed = (data) => {
         //removing first /. migth be redundant by here. did it earlier?

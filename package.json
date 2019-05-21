@@ -1,26 +1,45 @@
 {
-  "name": "webcomponents1",
+  "name": "web-components-boilerplate",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "serve": "nodemon server.js",
-    "start": "node server.js"
+    "start": "node server.js",
+    "dev": "webpack-dev-server --config ./webpack.config.js --mode development",
+    "build": "webpack --mode production"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/Seankps/webcomponents1.git"
+    "url": "git+https://github.com/Seankps/web-components-boilerplate.git"
   },
   "author": "",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/Seankps/webcomponents1/issues"
+    "url": "https://github.com/Seankps/web-components-boilerplate/issues"
   },
-  "homepage": "https://github.com/Seankps/webcomponents1#readme",
+  "homepage": "https://github.com/Seankps/web-components-boilerplate#readme",
+  "babel": {
+    "presets": [
+      "@babel/preset-env"
+    ],
+    "plugins": [
+      "transform-class-properties"
+    ]
+  },
   "dependencies": {
     "body-parser": "^1.18.3",
     "express": "^4.16.4",
     "nodemon": "^1.18.9"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.4.4",
+    "@babel/preset-env": "^7.4.4",
+    "babel-loader": "^8.0.6",
+    "babel-plugin-transform-class-properties": "^6.24.1",
+    "webpack": "^4.32.0",
+    "webpack-cli": "^3.3.2",
+    "webpack-dev-server": "^3.4.1"
   }
 }
