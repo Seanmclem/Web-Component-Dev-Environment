@@ -1,3 +1,5 @@
+var HtmlWebpackPlugin = require('html-webpack-plugin');
+
 module.exports = {
     entry: './src/app.js',
     module: {
@@ -17,6 +19,12 @@ module.exports = {
         publicPath: '/',
         filename: 'bundle.js'
     },
+    plugins: [
+        new HtmlWebpackPlugin({
+            hash: true,
+            filename: './index.html'
+        })
+    ],
     devServer: {
         contentBase: './dist',
         port: 9000,
