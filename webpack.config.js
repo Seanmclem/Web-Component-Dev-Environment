@@ -22,11 +22,11 @@ module.exports = {
     plugins: [
         new HtmlWebpackPlugin({
             hash: true,
-            filename: './index.html'
+            filename: '/index.html'
         })
     ],
     devServer: {
-        contentBase: './dist',
+        contentBase: './src',
         port: 9000,
         historyApiFallback: {
             index: 'index.html'
