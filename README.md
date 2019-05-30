@@ -13,6 +13,7 @@ I intended to have most things work like any modern javascript/[ECMAScript] fram
 
 ## Building
 `npm run build` then look in the `dist` folder
+
 Also, `npm run start` will host a local dev server `localhost:9000`
 
 
