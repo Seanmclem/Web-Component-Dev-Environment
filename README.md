@@ -21,8 +21,11 @@ Also, `npm run start` will host a local dev server `localhost:9000`
 
  - [ ] Improve webpack console output to indicate success status and localhost+number.
  - [ ] Move Router out to separate project, npm module, and dependency
+ - [ ] Add optional JSX rendering function, babel plugins.
+ - [ ] Add optional global/local state pub/sub
  - [ ] Build a CLI for this project to generate project templates and other smaller files.
  - [ ] Build a GUI for CLI
+ - [ ] Establish conventions
 
 ## License
 MIT License
