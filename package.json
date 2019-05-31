@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "webpack-dev-server --config ./webpack.config.js --mode development",
+    "start": "webpack-dev-server --config ./webpack.config.js --mode development --open",
     "build": "webpack --mode production"
   },
   "repository": {
@@ -18,15 +18,10 @@
     "url": "https://github.com/seanmclem/web-components-boilerplate/issues"
   },
   "homepage": "https://github.com/seanmclem/web-components-boilerplate#readme",
-  "babel": {
-    "presets": [
-      "@babel/preset-env"
-    ],
-    "plugins": [
-      "transform-class-properties"
-    ]
+  "dependencies": {
+    "@babel/plugin-proposal-class-properties": "^7.4.4",
+    "lodash": "^4.17.11"
   },
-  "dependencies": {},
   "devDependencies": {
     "@babel/core": "^7.4.4",
     "@babel/preset-env": "^7.4.4",
