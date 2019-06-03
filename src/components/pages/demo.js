@@ -1,4 +1,5 @@
 import { add, subtract } from '../math.js';
+import lodash from 'lodash';
 
 class DemoComponent extends HTMLElement {
     constructor() {
@@ -6,6 +7,10 @@ class DemoComponent extends HTMLElement {
         const shadow = this.attachShadow({ mode: 'open' });
         let template = document.createElement('template');
 
+        //example of lodash functioning as imported npm module, alongside other plain js modules
+        const array = [1];
+        const other = lodash.concat(array, 2, [3], [[4]]);
+        console.log(other);
 
         template.innerHTML = /*html*/`
             <h3>Demo</h3>
