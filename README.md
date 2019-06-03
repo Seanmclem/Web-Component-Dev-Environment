@@ -19,7 +19,7 @@ Also, `npm run start` will host a local dev server `localhost:9000`
 
 ## Goals
 
- - [ ] Improve webpack console output to indicate success status and localhost+number.
+ - [x] Improve webpack console output to indicate success status and localhost+port_number.
  - [ ] Move Router out to separate project, npm module, and dependency
  - [ ] Add optional JSX rendering function, babel plugins.
  - [ ] Add optional global/local state pub/sub
