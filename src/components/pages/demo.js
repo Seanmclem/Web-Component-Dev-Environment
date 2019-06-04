@@ -1,7 +1,7 @@
-import { add, subtract } from '../math.js';
+import { subtract } from '../math.js';
 import lodash from 'lodash';
 
-class DemoComponent extends HTMLElement {
+class DemoPage extends HTMLElement {
     constructor() {
         super();
         const shadow = this.attachShadow({ mode: 'open' });
@@ -11,6 +11,29 @@ class DemoComponent extends HTMLElement {
         const array = [1];
         const other = lodash.concat(array, 2, [3], [[4]]);
         console.log(other);
+
+        this.render(template, other);
+
+        const templateContent = template.content.cloneNode(true);
+        shadow.appendChild(templateContent);
+
+        var tests = this.test();
+        var secondTest = test2();
+        var hat = "shoe";
+        //
+
+    };
+    // connectedCallback() {
+    // }
+    // disconnectedCallback() {
+    // }
+    // attributeChangedCallback(attrName, oldVal, newVal) {
+    // }
+    test() {
+        return 'test';
+    }
+
+    render(template, other) {
 
         template.innerHTML = /*html*/`
             <h3>Demo</h3>
@@ -31,25 +54,6 @@ class DemoComponent extends HTMLElement {
             }
             </style>
         `;
-
-
-        const templateContent = template.content.cloneNode(true);
-        shadow.appendChild(templateContent);
-
-        var tests = this.test();
-        var secondTest = test2();
-        var hat = "shoe";
-        //
-
-    };
-    // connectedCallback() {
-    // }
-    // disconnectedCallback() {
-    // }
-    // attributeChangedCallback(attrName, oldVal, newVal) {
-    // }
-    test() {
-        return 'test';
     }
 }
 
@@ -59,4 +63,4 @@ const test2 = () => {
     return 'prest2';
 };
 
-customElements.define('demo-page', DemoComponent);
+customElements.define('demo-page', DemoPage);
