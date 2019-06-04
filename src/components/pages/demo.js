@@ -14,6 +14,7 @@ class DemoComponent extends HTMLElement {
 
         template.innerHTML = /*html*/`
             <h3>Demo</h3>
+            lodash  output ${other}
             <div> 
                 five minus one equals = ${subtract(5, 1)}  
             </div>

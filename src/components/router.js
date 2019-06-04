@@ -21,7 +21,7 @@ class RouterComponent extends HTMLElement {
 
 
     render(path, paramValue, paramName) {
-        const componentName = this.routes[`'${path}'`] ? this.routes[`'${path}'`].component : this.routes[`'/${path}'`].component;
+        const componentName = this.routes[`'${path}'`] ? this.routes[`'${path}'`].component : this.routes[`'/${path}'`].component; //refactor me away
 
         const ComponentRouted = customElements.get(componentName);
         let componentRouted = new ComponentRouted();
@@ -38,7 +38,7 @@ class RouterComponent extends HTMLElement {
 
     ////NEEDS BABEL https://stackoverflow.com/questions/42063854/arrow-function-syntax-not-working-with-webpack
 
-    routed = (data) => {
+    routed(data){
         //removing first /. migth be redundant by here. did it earlier?
         const paths = data.detail ? data.detail.path.replace(/^\//, '').split('/') : data.replace(/^\//, '').split('/');
         const path = paths && paths.length > 0 ? paths[0] : null;
@@ -65,7 +65,7 @@ class RouterComponent extends HTMLElement {
         this.shadowRoot.appendChild(routerContainer);
     }
 
-    setupRoutes = () => {
+    setupRoutes(){
         Array.from(this.children)
             .forEach(childElement => {
                 if (childElement.nodeName === "ROUTE-DEFINE") {
@@ -100,7 +100,7 @@ class RouterComponent extends HTMLElement {
         return componentName;
     }
 
-    checkFirstRoute = () => {
+    checkFirstRoute() {
         if (this.isFirstRoute) {
             this.isFirstRoute = false;
             const currentRoute = window.location.pathname;
