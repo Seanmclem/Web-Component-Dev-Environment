@@ -27,6 +27,7 @@ class RouterComponent extends HTMLElement {
         let componentRouted = new ComponentRouted();
         if (paramName && paramValue) {
             componentRouted[paramName] = paramValue;
+            //componentRouted.setAttribute(paramName, paramValue); ////alternative
         }
         //handle query params? at all?
         //URLSearchParams()
@@ -38,17 +39,18 @@ class RouterComponent extends HTMLElement {
 
     ////NEEDS BABEL https://stackoverflow.com/questions/42063854/arrow-function-syntax-not-working-with-webpack
 
-    routed(data){
+    routed(data) {
         //removing first /. migth be redundant by here. did it earlier?
         const paths = data.detail ? data.detail.path.replace(/^\//, '').split('/') : data.replace(/^\//, '').split('/');
         const path = paths && paths.length > 0 ? paths[0] : null;
         const paramValue = paths && paths.length > 1 ? paths[1] : null;
         let paramName = null;
+
         if (paramValue) {
             //getting 'name' of route param as fed to route-define component. To insert as atttribute name
             Object.keys(this.routes).forEach((route) => {
                 const value = this.routes[route];
-                if (value.param) {
+                if (value.param && path === value.path) {
                     const pathToUse = value.path.replace(/^\//, '');
                     paramName = pathToUse === path ? value.param : null;
                 }
@@ -65,7 +67,7 @@ class RouterComponent extends HTMLElement {
         this.shadowRoot.appendChild(routerContainer);
     }
 
-    setupRoutes(){
+    setupRoutes() {
         Array.from(this.children)
             .forEach(childElement => {
                 if (childElement.nodeName === "ROUTE-DEFINE") {

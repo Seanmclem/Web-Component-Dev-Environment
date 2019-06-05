@@ -9,22 +9,19 @@ class DemoPage extends HTMLElement {
 
         //example of lodash functioning as imported npm module, alongside other plain js modules
         const array = [1];
-        const other = lodash.concat(array, 2, [3], [[4]]);
-        console.log(other);
+        this.other = lodash.concat(array, 2, [3], [[4]]);
 
-        this.render(template, other);
+        this.render();
 
         const templateContent = template.content.cloneNode(true);
         shadow.appendChild(templateContent);
 
-        var tests = this.test();
-        var secondTest = test2();
-        var hat = "shoe";
-        //
-
     };
-    // connectedCallback() {
-    // }
+
+    connectedCallback() {
+        //let paramValue = this.getAttribute("param"); ////alternative
+        this.render();
+    }
     // disconnectedCallback() {
     // }
     // attributeChangedCallback(attrName, oldVal, newVal) {
@@ -33,11 +30,15 @@ class DemoPage extends HTMLElement {
         return 'test';
     }
 
-    render(template, other) {
-
-        template.innerHTML = /*html*/`
+    render() {
+        this.shadowRoot.innerHTML = /*html*/`
             <h3>Demo</h3>
-            lodash  output ${other}
+
+            <p>
+                lodash  output ${this.other} 
+                ${this.param ? `<br>param value = ${this.param}` : ``}
+            </p>
+
             <div> 
                 five minus one equals = ${subtract(5, 1)}  
             </div>
