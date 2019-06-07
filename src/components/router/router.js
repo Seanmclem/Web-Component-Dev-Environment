@@ -1,6 +1,8 @@
+import RouteDefine from './routeDefine';
+import RouteLink from './routeLink';
+
 class RouterComponent extends HTMLElement {
     //Component is a router-outlet, a route registry, and route handler
-
 
     constructor() {
         super();
