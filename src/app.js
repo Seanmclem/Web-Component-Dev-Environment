@@ -2,8 +2,8 @@ import './components/navigation.js';
 import './components/pages/home.js';
 import './components/pages/about.js';
 import './components/pages/demo.js';
-import './components/router.js';
-import './components/routeDefine.js';
+import './components/router/router.js';
+import './components/router/routeDefine.js';
 
 class AppComponent extends HTMLElement {
     constructor() {

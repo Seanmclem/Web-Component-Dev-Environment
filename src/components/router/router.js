@@ -36,9 +36,6 @@ class RouterComponent extends HTMLElement {
         return componentRouted;
     }
 
-
-    ////NEEDS BABEL https://stackoverflow.com/questions/42063854/arrow-function-syntax-not-working-with-webpack
-
     routed(data) {
         //removing first /. migth be redundant by here. did it earlier?
         const paths = data.detail ? data.detail.path.replace(/^\//, '').split('/') : data.replace(/^\//, '').split('/');

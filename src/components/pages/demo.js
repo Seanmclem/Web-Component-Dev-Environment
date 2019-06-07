@@ -20,6 +20,7 @@ class DemoPage extends HTMLElement {
 
     connectedCallback() {
         //let paramValue = this.getAttribute("param"); ////alternative
+        //NEED TODO add to router readme -params not available until connectedCallback. which is odd? Still, must be documented
         this.render();
     }
     // disconnectedCallback() {
@@ -31,6 +32,7 @@ class DemoPage extends HTMLElement {
     }
 
     render() {
+        //not using a template here/correctly?
         this.shadowRoot.innerHTML = /*html*/`
             <h3>Demo</h3>
 

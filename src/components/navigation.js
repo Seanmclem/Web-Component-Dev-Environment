@@ -1,4 +1,4 @@
-import './routeLink.js';
+import './router/routeLink.js';
 class NavigationComponent extends HTMLElement {
     constructor() {
         super();
