@@ -28,7 +28,6 @@ module.exports = {
         })
     ],
     devServer: {
-        stats: 'minimal',
         contentBase: './dist',
         port: 9000,
         overlay: true,

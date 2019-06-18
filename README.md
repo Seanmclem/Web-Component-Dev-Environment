@@ -12,6 +12,8 @@ I intended to have most things work like any modern javascript/[ECMAScript] fram
 
 
 ## Building
+Make sure you have installed dependencies via `npm install`
+
 `npm run build` then look in the `dist` folder
 
 Also, `npm run start` will host a local dev server `localhost:9000`
@@ -20,7 +22,7 @@ Also, `npm run start` will host a local dev server `localhost:9000`
 ## Goals
 
  - [x] Improve webpack console output to indicate success status and localhost+port_number.
- - [ ] Move Router out to separate project, npm module, and dependency
+ - [x] Move Router out to separate project, npm module, and dependency
  - [ ] Add optional JSX rendering function, babel plugins.
  - [ ] Add optional global/local state pub/sub
  - [ ] Build a CLI for this project to generate project templates and other smaller files.

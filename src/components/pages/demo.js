@@ -1,4 +1,4 @@
-import { subtract } from '../math.js';
+import { subtract } from '../utils.js';
 import lodash from 'lodash';
 
 class DemoPage extends HTMLElement {
@@ -11,11 +11,11 @@ class DemoPage extends HTMLElement {
         const array = [1];
         this.other = lodash.concat(array, 2, [3], [[4]]);
 
-        this.render();
+
 
         const templateContent = template.content.cloneNode(true);
         shadow.appendChild(templateContent);
-
+        this.render();
     };
 
     connectedCallback() {
