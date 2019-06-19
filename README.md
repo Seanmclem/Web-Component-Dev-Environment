@@ -22,7 +22,7 @@ Also, `npm run start` will host a local dev server `localhost:9000`
 ## Goals
 
  - [x] Improve webpack console output to indicate success status and localhost+port_number.
- - [x] Move Router out to separate project, npm module, and dependency
+ - [x] Move Router out to [separate project](https://github.com/Seanmclem/router-elements), [npm module](https://www.npmjs.com/package/routerelements), and dependency
  - [ ] Add optional JSX rendering function, babel plugins.
  - [ ] Add optional global/local state pub/sub
  - [ ] Build a CLI for this project to generate project templates and other smaller files.
