@@ -20,7 +20,7 @@
   "homepage": "https://github.com/seanmclem/web-components-boilerplate#readme",
   "dependencies": {
     "@babel/plugin-proposal-class-properties": "^7.4.4",
-    "lodash": "^4.17.11",
+    "lodash": "^4.17.13",
     "routerelements": "latest"
   },
   "devDependencies": {
