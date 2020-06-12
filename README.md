@@ -14,7 +14,7 @@ I intended to have most things work like any modern javascript/[ECMAScript] fram
 ## Building
 Make sure you have installed dependencies via `npm install`
 
-`npm run build` then look in the `dist` folder
+`npm run build` to do a production build to the `dist` folder
 
 Also, `npm run start` will host a local dev server `localhost:9000`
 
